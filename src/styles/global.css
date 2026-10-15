@@ -1,0 +1,281 @@
+/* ===== 可调项：改这里就能换站点的样子 ===== */
+:root {
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+    "Source Han Sans SC", "Noto Sans CJK SC", system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New",
+    monospace;
+
+  --measure: 46rem;        /* 正文栏宽，中文 34–40 字一行比较舒服 */
+  --line-height: 1.85;     /* 中文行高，比英文默认的 1.5 松一些 */
+
+  --ink: #1b1b1f;
+  --ink-soft: #5c5c66;
+  --paper: #fdfdfb;
+  --rule: #e4e4e0;
+  --accent: #2563a8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e6e6e3;
+    --ink-soft: #9a9aa3;
+    --paper: #17171a;
+    --rule: #32323a;
+    --accent: #7cb3e8;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: var(--line-height);
+  text-rendering: optimizeLegibility;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ---------- 页头 / 页脚 ---------- */
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem 0;
+  margin-bottom: 2.5rem;
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.site-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.site-nav {
+  margin-left: auto;
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.site-nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--accent);
+}
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 4rem;
+  padding: 1.5rem 0 3rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+/* ---------- 链接 ---------- */
+a {
+  color: var(--accent);
+}
+
+/* ---------- 文章列表 ---------- */
+.page-intro {
+  color: var(--ink-soft);
+  margin: 0 0 2.5rem;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list li {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.post-list li:first-child {
+  padding-top: 0;
+}
+
+.post-list a {
+  font-size: 1.08rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.post-list a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.post-meta {
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  margin-top: 0.3rem;
+}
+
+.post-list .excerpt {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+}
+
+.draft-badge {
+  font-size: 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  margin-left: 0.5rem;
+  color: var(--ink-soft);
+  vertical-align: 0.1em;
+}
+
+/* ---------- 文章正文 ---------- */
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-header h1 {
+  font-size: 1.75rem;
+  line-height: 1.4;
+  margin: 0 0 0.6rem;
+}
+
+.post-header .post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.prose > *:first-child {
+  margin-top: 0;
+}
+
+.prose h2 {
+  font-size: 1.3rem;
+  margin: 2.5rem 0 0.8rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.prose h3 {
+  font-size: 1.08rem;
+  margin: 2rem 0 0.6rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  margin: 0 0 1.15em;
+}
+
+.prose li {
+  margin-bottom: 0.4em;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  border-left: 3px solid var(--rule);
+  color: var(--ink-soft);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.prose pre {
+  padding: 1rem 1.1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--rule);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem 0;
+}
+
+/* 中文标点挤压：避免行首出现孤立的标点 */
+.prose {
+  text-wrap: pretty;
+}
+
+.tag {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.05rem 0.6rem;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+  .site-nav {
+    margin-left: 0;
+    width: 100%;
+  }
+}
