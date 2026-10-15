@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  /** dev 环境里显示草稿标记 */
+  showDraftBadge?: boolean;
+}
+
+const { posts, showDraftBadge = false } = Astro.props;
+
+const fmt = (d: Date) =>
+  `${d.getFullYear()} 年 ${d.getMonth() + 1} 月 ${d.getDate()} 日`;
+---
+
+<ul class="post-list">
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.id}/`}>
+          {post.data.title}
+          {showDraftBadge && post.data.draft && <span class="draft-badge">草稿</span>}
+        </a>
+        <div class="post-meta">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {fmt(post.data.pubDate)}
+          </time>
+        </div>
+        {post.data.description && <p class="excerpt">{post.data.description}</p>}
+      </li>
+    ))
+  }
+</ul>
+
+{
+  posts.length === 0 && (
+    <p class="page-intro">还没有文章。在 src/content/blog/ 里新建一个 .md 文件就能开始写。</p>
+  )
+}
