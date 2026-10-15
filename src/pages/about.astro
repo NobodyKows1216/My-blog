@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
+---
+
+<BaseLayout title="关于" description={`关于 ${SITE.title}`}>
+  <article class="prose">
+    <h1>关于</h1>
+    <p>这里写你是谁、为什么开这个博客、想写些什么。</p>
+    <p>
+      联系方式可以放邮箱，但别把手机号、学校班级这类信息放在公开页面上。
+    </p>
+  </article>
+</BaseLayout>
